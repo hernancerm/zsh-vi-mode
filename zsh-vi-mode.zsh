@@ -86,7 +86,6 @@
 #
 # 1. 'classic' mode (verb->s->surround):
 #   S"    Add " for visual selection
-#   ys"   Add " for visual selection
 #   cs"'  Change " to '
 #   ds"   Delete "
 #
@@ -2161,7 +2160,6 @@ function zvm_parse_surround_keys() {
   case "${keys}" in
     vS*) action=S; surround=${keys:2};;
     vsa*) action=a; surround=${keys:3};;
-    vys*) action=y; surround=${keys:3};;
     s[dr]*) action=${keys:1:1}; surround=${keys:2};;
     [acd]s*) action=${keys:0:1}; surround=${keys:2};;
     [cdvy][ia]*) action=${keys:0:2}; surround=${keys:2};;
@@ -3915,7 +3913,7 @@ function zvm_init() {
       for c in {d,c}s${s}; do
         zvm_bindkey vicmd "$c" zvm_change_surround
       done
-      for c in {S,ys}${s}; do
+      for c in S${s}; do
         zvm_bindkey visual "$c" zvm_change_surround
       done
     fi
